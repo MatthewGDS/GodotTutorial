@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var animatedSprite = $AnimatedSprite2D
 
-func _ready():
+ _ready():
 	animatedSprite.frame = 0
 	animatedSprite.play("Animate")
 
