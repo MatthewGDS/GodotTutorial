@@ -3,6 +3,7 @@ extends Node2D
 @onready var animatedSprite = $AnimatedSprite2D
 
 func _ready():
+	print("start")
 	animatedSprite.frame = 0
 	animatedSprite.play("Animate")
 

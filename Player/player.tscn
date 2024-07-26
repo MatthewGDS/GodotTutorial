@@ -1,7 +1,8 @@
-[gd_scene load_steps=39 format=3 uid="uid://c4hqxb2xmubmg"]
+[gd_scene load_steps=41 format=3 uid="uid://c4hqxb2xmubmg"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_t6p10"]
 [ext_resource type="Texture2D" uid="uid://diccv56dxpgck" path="res://Player/Player.png" id="2_n0r7h"]
+[ext_resource type="PackedScene" uid="uid://d0kja146iweyw" path="res://Hit & Hurt Boxes/hit_box.tscn" id="3_l4exs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1jjaf"]
 radius = 4.0
@@ -392,6 +393,10 @@ states/Run/position = Vector2(573, 99.9219)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3v61y"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_bqicx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_v57p2"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_hmh6u"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_n5tab")]
 graph_offset = Vector2(9.0975, -59.1025)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbccm"]
+radius = 7.0
+height = 22.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_t6p10")
 
@@ -413,14 +418,73 @@ autoplay = "IdleRight"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
-libraries = {
-"": SubResource("AnimationLibrary_ci8cf")
-}
 tree_root = SubResource("AnimationNodeStateMachine_bpjtg")
 anim_player = NodePath("../AnimationPlayer")
+parameters/current_length = false
+parameters/current_position = false
+parameters/current_delta = false
 parameters/conditions/idle = true
 parameters/conditions/isRunning = false
 parameters/conditions/swing = false
+parameters/Attack/current_length = Vector2(0, 0)
+parameters/Attack/current_position = Vector2(0, 0)
+parameters/Attack/current_delta = Vector2(0, 0)
 parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Attack/0/current_length = null
+parameters/Attack/0/current_position = null
+parameters/Attack/0/current_delta = null
+parameters/Attack/1/current_length = null
+parameters/Attack/1/current_position = null
+parameters/Attack/1/current_delta = null
+parameters/Attack/2/current_length = null
+parameters/Attack/2/current_position = null
+parameters/Attack/2/current_delta = null
+parameters/Attack/3/current_length = null
+parameters/Attack/3/current_position = null
+parameters/Attack/3/current_delta = null
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/Idle/current_length = Vector2(0, 0)
+parameters/Idle/current_position = Vector2(0, 0)
+parameters/Idle/current_delta = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/0/current_length = null
+parameters/Idle/0/current_position = null
+parameters/Idle/0/current_delta = null
+parameters/Idle/1/current_length = null
+parameters/Idle/1/current_position = null
+parameters/Idle/1/current_delta = null
+parameters/Idle/2/current_length = null
+parameters/Idle/2/current_position = null
+parameters/Idle/2/current_delta = null
+parameters/Idle/3/current_length = null
+parameters/Idle/3/current_position = null
+parameters/Idle/3/current_delta = null
+parameters/Run/current_length = Vector2(0, 0)
+parameters/Run/current_position = Vector2(0, 0)
+parameters/Run/current_delta = Vector2(0, 0)
 parameters/Run/blend_position = Vector2(0, 0)
+parameters/Run/0/current_length = null
+parameters/Run/0/current_position = null
+parameters/Run/0/current_delta = null
+parameters/Run/1/current_length = null
+parameters/Run/1/current_position = null
+parameters/Run/1/current_delta = null
+parameters/Run/2/current_length = null
+parameters/Run/2/current_position = null
+parameters/Run/2/current_delta = null
+parameters/Run/3/current_length = null
+parameters/Run/3/current_position = null
+parameters/Run/3/current_delta = null
+parameters/Start/current_length = null
+parameters/Start/current_position = null
+parameters/Start/current_delta = null
+
+[node name="HitBox" parent="." instance=ExtResource("3_l4exs")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_tbccm")
+
+[editable path="HitBox"]
